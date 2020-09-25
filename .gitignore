@@ -1,0 +1,17 @@
+# IDE
+/.code-workspace
+/.idea
+/.settings
+/.vscode
+
+# Libraries
+/node_modules
+
+# Local
+.env*
+
+# Generated
+/dist
+
+# Logs
+*.log*

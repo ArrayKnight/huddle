@@ -1,0 +1,20 @@
+# IDE
+/.code-workspace
+/.idea
+/.settings
+/.vscode
+
+# Local
+/src/assets
+.env*
+.*ignore
+LICENSE
+
+# Generated
+/dist
+/node_modules
+package-lock.json
+yarn.lock
+
+# Logs
+*.log*
