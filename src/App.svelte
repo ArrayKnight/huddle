@@ -1,47 +1,25 @@
 <script lang="ts">
-    import { Application } from '@pixi/app'
     import { onMount } from 'svelte'
 
-    const app = new Application({
-        antialias: true,
-    })
-
-    app.renderer.autoResize = true
-
-    function bindApp(node) {
-        node.appendChild(app.view)
-
-        return {
-            destroy() {
-                node.removeChild(app.view)
-            },
-        }
-    }
-
-    function resize() {
-        app.renderer.resize(
-            app.view.parentNode.clientWidth,
-            app.view.parentNode.clientHeight,
-        )
-    }
+    import { World } from './components'
+    import { bindPixiApp, resizePixiApp } from './pixi'
 
     onMount(() => {
-        resize()
+        window.addEventListener('resize', resizePixiApp)
 
-        window.addEventListener('resize', resize)
-
-        return () => {
-            window.removeEventListener('resize', resize)
-        }
+        return () => window.removeEventListener('resize', resizePixiApp)
     })
 </script>
 
-<div class="App" use:bindApp></div>
+<div class="App" use:bindPixiApp>
+    <World />
+</div>
 
 <style lang="scss">
     :global(html, body) {
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
 
     .App {
@@ -50,6 +28,7 @@
             width: 100%;
             height: 100%;
             display: block;
+            overflow: hidden;
         }
     }
 </style>

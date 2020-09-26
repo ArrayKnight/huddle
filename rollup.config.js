@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import copy from 'rollup-plugin-copy'
+import json from '@rollup/plugin-json'
 import livereload from 'rollup-plugin-livereload'
 import resolve from '@rollup/plugin-node-resolve'
 import serve from 'rollup-plugin-serve'
@@ -44,11 +45,12 @@ export default {
                 postcss: true,
             }),
         }),
-        typescript({ sourceMap: !production }),
         resolve({
             browser: true,
             dedupe: ['svelte'],
         }),
+        json(),
+        typescript({ sourceMap: !production }),
         commonjs(),
         !module &&
             babel({
@@ -79,14 +81,19 @@ export default {
                     ],
                 ],
             }),
-        copy({
-            targets: [
-                {
-                    src: 'src/index.html',
-                    dest: 'dist',
-                },
-            ],
-        }),
+        module &&
+            copy({
+                targets: [
+                    {
+                        src: 'src/index.html',
+                        dest: 'dist',
+                    },
+                    {
+                        src: 'src/assets/*.png',
+                        dest: 'dist/assets',
+                    },
+                ],
+            }),
         !production &&
             module &&
             serve({
