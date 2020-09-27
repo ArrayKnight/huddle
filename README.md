@@ -1,4 +1,8 @@
-# Huddle technical rendering test
+# Huddle Coding Challenge
+
+### `npm install && npm start`
+
+## Instructions
 
 ### Overview
 
@@ -26,7 +30,7 @@ We would like you to build a small tile map renderer that takes in a provided la
 
 ### Assets provided
 
-`map.json` - A layout of the 16 x 16 block world. It is a two dimensional array with the following format:
+`world-map.json` - A layout of the 16 x 16 block world. It is a two dimensional array with the following format:
 
 ```
 [
@@ -35,7 +39,6 @@ We would like you to build a small tile map renderer that takes in a provided la
 	...
 	[ 0, 6, 1, 8, ... 32, 22] // row 70 tile ids (length 120)
 ]
-
 ```
 
 To calculate the tile position on the sprite sheet from the tile id as follows:
@@ -44,23 +47,14 @@ To calculate the tile position on the sprite sheet from the tile id as follows:
 0,   1,   2,   3,   4,  ..., 27
 28, 29,  30,  31,  32,  ..., 56
 57, 58,  59,  60,  61,  ..., 84
-
 ```
 
-`world-spritesheet.png` - The tile sprite sheet. Each tile is 16x16 pixels wide.
+`sprite-world.png` - The tile sprite sheet. Each tile is 16x16 pixels wide.
 
-`world-example.mov` - this a reference to what the world should look like when rendered correctly.
-
-`characters.png` - the assets for the characters that move around in the world. The challenge here is making them DOM elements that map directly and correctly to the map itself. Making it seam like they are one thing.
+`sprite-characters.png` - the assets for the characters that move around in the world. The challenge here is making them DOM elements that map directly and correctly to the map itself. Making it seam like they are one thing.
 
 Just like if you were to work with us for real, feel free to ask any questions and we will be happy to help.
 
-## setup (optional)
+### Validation
 
-If you would like to use the set up build setup provided, fool these steps:
-
-1. `npm install` - will install webpack and TS.
-
-2. `npm start` - will build the code and watch for changes.
-
-3. You will need to then serve the dist folder. Heres a tool for that if required: https://www.npmjs.com/package/http-server
+`world-example.mov` - this a reference to what the world should look like when rendered correctly.
