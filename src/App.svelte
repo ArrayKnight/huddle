@@ -2,7 +2,7 @@
     import { setContext } from 'svelte'
 
     import { PIXI_CONTEXT } from './common'
-    import { World } from './components'
+    import { World, Characters } from './components'
     import { createContext } from './pixi'
     import type { SvelteAction } from './types'
 
@@ -26,6 +26,7 @@
 
 <div class="App" use:bind>
     <World />
+    <Characters />
 </div>
 
 <style lang="scss">
@@ -36,6 +37,8 @@
     }
 
     .App {
+        position: relative;
+
         &,
         :global(canvas) {
             width: 100%;

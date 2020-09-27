@@ -6,3 +6,8 @@ export interface PixiContext {
     viewport: Viewport
     destroy(): void
 }
+
+export interface Position {
+    x: number
+    y: number
+}

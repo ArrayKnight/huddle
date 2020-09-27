@@ -51,7 +51,7 @@ To calculate the tile position on the sprite sheet from the tile id as follows:
 
 `world-example.mov` - this a reference to what the world should look like when rendered correctly.
 
-`characters.pns` - the assets for the characters that move around in the world. The challenge here is making them DOM elements that map directly and correctly to the map itself. Making it seam like they are one thing.
+`characters.png` - the assets for the characters that move around in the world. The challenge here is making them DOM elements that map directly and correctly to the map itself. Making it seam like they are one thing.
 
 Just like if you were to work with us for real, feel free to ask any questions and we will be happy to help.
 
