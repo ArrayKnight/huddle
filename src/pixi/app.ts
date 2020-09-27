@@ -25,7 +25,13 @@ export function createContext(): PixiContext {
 
     app.stage.addChild(viewport)
 
-    viewport.clamp({ direction: 'all' }).decelerate().drag().pinch().wheel()
+    viewport
+        .clamp({ direction: 'all' })
+        .decelerate()
+        .drag()
+        .mouseEdges({ radius: 100, speed: 12 })
+        .pinch()
+        .wheel()
 
     function setZoom(): void {
         const minScale = viewport.findCover(worldWidth, worldHeight)
