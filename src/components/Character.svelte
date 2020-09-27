@@ -49,7 +49,7 @@
         left: var(--left);
         transform: translate(var(--x), var(--y));
         transition: transform var(--duration) linear;
-        animation: Walk infinite 325ms;
+        animation: Walk infinite 200ms;
 
         @for $i from 0 through 13 {
             &--skin-#{$i} {

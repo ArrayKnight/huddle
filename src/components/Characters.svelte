@@ -13,12 +13,12 @@
     }))
     let x = viewport.position.x
     let y = viewport.position.y
-    let scale = viewport.scale.x
+    let scale = viewport.scaled
 
     function update(event: MovedEventData | ZoomedEventData): void {
         x = event.viewport.position.x
         y = event.viewport.position.y
-        scale = event.viewport.scale.x
+        scale = event.viewport.scaled
     }
 
     onMount(() => {
