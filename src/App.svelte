@@ -1,17 +1,30 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
+    import { setContext } from 'svelte'
 
+    import { PIXI_CONTEXT } from './common'
     import { World } from './components'
-    import { bindPixiApp, resizePixiApp } from './pixi'
+    import { createContext } from './pixi'
+    import type { SvelteAction } from './types'
 
-    onMount(() => {
-        window.addEventListener('resize', resizePixiApp)
+    const context = createContext()
+    const { app, destroy } = context
 
-        return () => window.removeEventListener('resize', resizePixiApp)
-    })
+    setContext(PIXI_CONTEXT, context)
+
+    function bind(node: Node): ReturnType<SvelteAction> {
+        node.appendChild(app.view)
+
+        return {
+            destroy() {
+                node.removeChild(app.view)
+
+                destroy()
+            },
+        }
+    }
 </script>
 
-<div class="App" use:bindPixiApp>
+<div class="App" use:bind>
     <World />
 </div>
 
@@ -24,7 +37,7 @@
 
     .App {
         &,
-        canvas {
+        :global(canvas) {
             width: 100%;
             height: 100%;
             display: block;

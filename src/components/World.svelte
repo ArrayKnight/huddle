@@ -1,18 +1,33 @@
-<script>
-    import { Graphics } from 'pixi.js'
-    import { onMount } from 'svelte'
+<script lang="ts">
+    import type { Loader, LoaderResource, ITextureDictionary } from 'pixi.js'
+    import { getContext } from 'svelte'
 
-    import { pixiApp, viewport } from '../pixi'
+    import { worldMap } from '../assets'
+    import { PIXI_CONTEXT, WORLD_TILE_SIZE } from '../common'
+    import WorldTile from './WorldTile.svelte'
 
-    onMount(() => {
-        const rect = new Graphics()
-            .beginFill(0xff0000)
-            .drawRect(-100, -100, 100, 100)
+    const { app } = getContext(PIXI_CONTEXT)
+    const resource = '/assets/sprite-world.json'
+    let textures: ITextureDictionary | undefined
 
-        rect.position.set(pixiApp.screen.width / 2, pixiApp.screen.height / 2)
-
-        viewport.addChild(rect)
-
-        return () => viewport.removeChild(rect)
-    })
+    app.loader
+        .add(resource)
+        .load((
+            _: Loader,
+            resources: Partial<Record<string, LoaderResource>>
+        ) => {
+            textures = resources[resource]?.textures
+        })
 </script>
+
+{#if textures}
+    {#each worldMap as row, yI}
+        {#each row as id, xI}
+            <WorldTile
+                texture="{(textures || {})[id]}"
+                x="{xI * WORLD_TILE_SIZE}"
+                y="{yI * WORLD_TILE_SIZE}"
+            />
+        {/each}
+    {/each}
+{/if}

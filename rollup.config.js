@@ -14,6 +14,17 @@ import autoPreprocess from 'svelte-preprocess'
 const module = !process.env.NOMODULE
 const production = !process.env.ROLLUP_WATCH
 
+function typeCheck() {
+    return {
+        writeBundle() {
+            require('child_process').spawn('svelte-check', {
+                stdio: ['ignore', 'inherit', 'inherit'],
+                shell: true,
+            })
+        },
+    }
+}
+
 export default {
     input: 'src/index.ts',
     output: {
@@ -22,6 +33,14 @@ export default {
         file: `dist/app.${module ? 'mjs' : 'js'}`,
     },
     plugins: [
+        resolve({
+            browser: true,
+            dedupe: ['svelte'],
+            preferBuiltins: true,
+        }),
+        json(),
+        typeCheck(),
+        typescript({ sourceMap: !production }),
         svelte({
             dev: !production,
             css: (css) => {
@@ -45,12 +64,6 @@ export default {
                 postcss: true,
             }),
         }),
-        resolve({
-            browser: true,
-            dedupe: ['svelte'],
-        }),
-        json(),
-        typescript({ sourceMap: !production }),
         commonjs(),
         !module &&
             babel({
@@ -89,7 +102,7 @@ export default {
                         dest: 'dist',
                     },
                     {
-                        src: 'src/assets/*.png',
+                        src: 'src/assets/*.{png,json}',
                         dest: 'dist/assets',
                     },
                 ],

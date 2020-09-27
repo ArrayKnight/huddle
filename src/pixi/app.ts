@@ -3,41 +3,50 @@ import { Viewport } from 'pixi-viewport'
 
 import { worldMap } from '../assets'
 import { WORLD_TILE_SIZE } from '../common'
-import type { UseAction } from '../types'
+import type { PixiContext } from '../types'
 
-export const pixiApp = new Application({
-    width: document.body.clientWidth,
-    height: document.body.clientHeight,
-    antialias: true,
-})
+export function createContext(): PixiContext {
+    let width = window.innerWidth
+    let height = window.innerHeight
+    const app = new Application({
+        width,
+        height,
+        antialias: true,
+    })
+    const viewport = new Viewport({
+        screenWidth: width,
+        screenHeight: height,
+        worldWidth: (worldMap[0]?.length || 0) * WORLD_TILE_SIZE,
+        worldHeight: worldMap.length * WORLD_TILE_SIZE,
+        interaction: app.renderer.plugins.interaction,
+    })
 
-export const viewport = new Viewport({
-    screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight,
-    worldWidth: (worldMap[0]?.length || 0) * WORLD_TILE_SIZE,
-    worldHeight: worldMap.length * WORLD_TILE_SIZE,
-    interaction: pixiApp.renderer.plugins.interaction,
-})
+    app.stage.addChild(viewport)
 
-pixiApp.stage.addChild(viewport)
+    viewport.drag().pinch().wheel().decelerate()
 
-viewport.drag().pinch().wheel().decelerate()
+    function resize(): void {
+        width = window.innerWidth
+        height = window.innerHeight
 
-export function bindPixiApp(node: Node): ReturnType<UseAction> {
-    node.appendChild(pixiApp.view)
+        app.renderer.resize(width, height)
+
+        viewport.resize(width, height)
+    }
+
+    window.addEventListener('resize', resize)
 
     return {
+        app,
+        viewport,
         destroy() {
-            node.removeChild(pixiApp.view)
+            window.removeEventListener('resize', resize)
+
+            app.destroy(true, {
+                children: true,
+                texture: true,
+                baseTexture: true,
+            })
         },
     }
-}
-
-export function resizePixiApp(): void {
-    const width = document.body.clientWidth
-    const height = document.body.clientHeight
-
-    pixiApp.renderer.resize(width, height)
-
-    viewport.resize(width, height)
 }

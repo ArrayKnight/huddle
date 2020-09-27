@@ -2,7 +2,14 @@
     "extends": "@tsconfig/svelte/tsconfig.json",
     "compileOnSave": false,
     "compilerOptions": {
-        "resolveJsonModule": true
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": true
     },
     "include": ["src"]
 }
