@@ -36,6 +36,7 @@
     },
     "dependencies": {
         "core-js": "^3.6.5",
+        "lodash": "^4.17.20",
         "pixi-viewport": "^4.14.0",
         "pixi.js": "^5.3.3",
         "svelte": "^3.28.0"
@@ -52,8 +53,10 @@
         "@rollup/plugin-node-resolve": "^9.0.0",
         "@rollup/plugin-typescript": "^6.0.0",
         "@tsconfig/svelte": "^1.0.10",
+        "@types/lodash": "^4.14.161",
         "@typescript-eslint/eslint-plugin": "^4.2.0",
         "@typescript-eslint/parser": "^4.2.0",
+        "babel-plugin-lodash": "^3.3.4",
         "cross-env": "^7.0.2",
         "eslint": "^7.10.0",
         "eslint-config-prettier": "^6.12.0",

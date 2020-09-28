@@ -60,6 +60,7 @@ export default {
                             },
                         ],
                     ],
+                    plugins: ['lodash'],
                 },
                 postcss: true,
             }),
@@ -92,6 +93,7 @@ export default {
                             useESModules: true,
                         },
                     ],
+                    'lodash',
                 ],
             }),
         module &&
