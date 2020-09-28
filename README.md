@@ -16,17 +16,17 @@ We would like you to build a small tile map renderer that takes in a provided la
 
 ### Approach
 
--   Code is either ES6 or Typescript.
--   Created with either pure WebGL or a higher level library (eg Pixi.js)
+-   Code is either ES6 or **Typescript**.
+-   Created with either pure WebGL or a higher level library (eg **Pixi.js**)
 
 ### Features
 
--   Load and parse the sprites and the tile world data provided.
--   Build a tile map renderer.
--   Ability to move the ‘Camera’ to scroll the world.
--   _bonus_ Add some little characters moving around but they should be CSS dom elements mapping to the WebGL.
--   _bonus_ Ability to zoom the Camera.
--   _bonus_ decent culling approach and optimization.
+-   [x] Load and parse the sprites and the tile world data provided.
+-   [x] Build a tile map renderer.
+-   [x] Ability to move the ‘Camera’ to scroll the world.
+-   [x] _bonus_ Add some little characters moving around but they should be CSS dom elements mapping to the WebGL.
+-   [x] _bonus_ Ability to zoom the Camera.
+-   [ ] _bonus_ decent culling approach and optimization.
 
 ### Assets provided
 
@@ -52,8 +52,6 @@ To calculate the tile position on the sprite sheet from the tile id as follows:
 `sprite-world.png` - The tile sprite sheet. Each tile is 16x16 pixels wide.
 
 `sprite-characters.png` - the assets for the characters that move around in the world. The challenge here is making them DOM elements that map directly and correctly to the map itself. Making it seam like they are one thing.
-
-Just like if you were to work with us for real, feel free to ask any questions and we will be happy to help.
 
 ### Validation
 
