@@ -47,10 +47,12 @@
     onMount(() => {
         viewport.on('moved', updateRenderable)
         viewport.on('zoomed', updateRenderable)
+        window.addEventListener('resize', updateRenderable)
 
         return () => {
             viewport.off('moved', updateRenderable)
             viewport.off('zoomed', updateRenderable)
+            window.removeEventListener('resize', updateRenderable)
         }
     })
 </script>
