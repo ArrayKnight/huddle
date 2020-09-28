@@ -43,8 +43,6 @@
         width: var(--width);
         height: var(--height);
         position: absolute;
-        top: 0;
-        left: 0;
         z-index: 1;
         transform: translate(var(--x), var(--y)) scale(var(--scale));
         transform-origin: top left;

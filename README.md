@@ -26,7 +26,7 @@ We would like you to build a small tile map renderer that takes in a provided la
 -   [x] Ability to move the ‘Camera’ to scroll the world.
 -   [x] _bonus_ Add some little characters moving around but they should be CSS dom elements mapping to the WebGL.
 -   [x] _bonus_ Ability to zoom the Camera.
--   [ ] _bonus_ decent culling approach and optimization.
+-   [x] _bonus_ decent culling approach and optimization.
 
 ### Assets provided
 

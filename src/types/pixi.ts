@@ -11,3 +11,7 @@ export interface Position {
     x: number
     y: number
 }
+
+export type Renderable = { shouldRender: boolean } & Position
+
+export type Renderable2DArray = Array<Array<Renderable>>
