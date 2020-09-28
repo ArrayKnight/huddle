@@ -1,14 +1,9 @@
 import type { Position } from '../types'
 
-export function generatePosition(
-    width: number,
-    height: number,
-    left: number,
-    top: number,
-): Position {
+export function generatePosition(width: number, height: number): Position {
     return {
-        x: Math.random() * width - left,
-        y: Math.random() * height - top,
+        x: Math.random() * width,
+        y: Math.random() * height,
     }
 }
 

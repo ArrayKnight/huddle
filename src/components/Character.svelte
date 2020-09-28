@@ -3,18 +3,16 @@
 
     import { calculateDelta, generatePosition, PIXI_CONTEXT } from '../common'
 
-    export let top = 0
-    export let left = 0
+    export let x = 0
+    export let y = 0
 
     const { viewport } = getContext(PIXI_CONTEXT)
     const skin = Math.round(Math.random() * 14)
     const speed = 200
     let duration = 0
-    let x = 0
-    let y = 0
 
     function updatePosition(): void {
-        const position = generatePosition(viewport.worldWidth - 34, viewport.worldHeight - 50, left, top)
+        const position = generatePosition(viewport.worldWidth - 34, viewport.worldHeight - 50)
         const delta = calculateDelta({ x, y }, position)
 
         duration = Math.round((delta / speed) * 100) / 100
@@ -27,7 +25,7 @@
 
 <div
     class="Character Character--skin-{skin}"
-    style="--top: {top}px; --left: {left}px; --x: {x}px; --y: {y}px; --duration: {duration}s;"
+    style="--x: {x}px; --y: {y}px; --duration: {duration}s;"
     on:transitionend="{updatePosition}"
 ></div>
 
@@ -45,8 +43,6 @@
         height: $height * 1px;
         background: url('/assets/sprite-characters.png') no-repeat;
         position: absolute;
-        top: var(--top);
-        left: var(--left);
         transform: translate(var(--x), var(--y));
         transition: transform var(--duration) linear;
         animation: Walk infinite 200ms;

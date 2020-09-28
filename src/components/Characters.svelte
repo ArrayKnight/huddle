@@ -8,8 +8,8 @@
     const { viewport } = getContext(PIXI_CONTEXT)
     const count = Math.max(Math.round(Math.random() * 50), 18)
     const positions = new Array(count).fill(null).map(() => ({
-        top: Math.random() * viewport.worldHeight,
-        left: Math.random() * viewport.worldWidth,
+        x: Math.random() * viewport.worldWidth,
+        y: Math.random() * viewport.worldHeight,
     }))
     let x = viewport.position.x
     let y = viewport.position.y
