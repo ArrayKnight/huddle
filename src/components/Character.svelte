@@ -50,7 +50,7 @@
         @for $i from 0 through 13 {
             &--skin-#{$i} {
                 $col: $i % 6;
-                $row: round($i / 6);
+                $row: floor($i / 6);
 
                 background-position: ($col * $width * -1px)
                     ($row * $height * -1px);
